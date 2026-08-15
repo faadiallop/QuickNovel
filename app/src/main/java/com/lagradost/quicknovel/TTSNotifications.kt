@@ -218,6 +218,13 @@ object TTSNotifications {
                 builder.addAction(actionStop)
                 builder.addAction(actionPause)
                 builder.addAction(actionFastForward)
+                
+                mediaSession?.setPlaybackState(
+                    PlaybackStateCompat.Builder()
+                        .setState(PlaybackStateCompat.STATE_PLAYING, PlaybackStateCompat.PLAYBACK_POSITION_UNKNOWN, 1f)
+                        .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE or PlaybackStateCompat.ACTION_PAUSE or PlaybackStateCompat.ACTION_STOP or PlaybackStateCompat.ACTION_SKIP_TO_NEXT or PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS)
+                        .build()
+                )
             }
 
             TTSHelper.TTSStatus.IsPaused -> {
@@ -225,6 +232,13 @@ object TTSNotifications {
                 builder.addAction(actionStop)
                 builder.addAction(actionPlay)
                 builder.addAction(actionFastForward)
+
+                mediaSession?.setPlaybackState(
+                    PlaybackStateCompat.Builder()
+                        .setState(PlaybackStateCompat.STATE_PAUSED, PlaybackStateCompat.PLAYBACK_POSITION_UNKNOWN, 1f)
+                        .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE or PlaybackStateCompat.ACTION_PLAY or PlaybackStateCompat.ACTION_STOP or PlaybackStateCompat.ACTION_SKIP_TO_NEXT or PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS)
+                        .build()
+                )
             }
 
             else -> {
